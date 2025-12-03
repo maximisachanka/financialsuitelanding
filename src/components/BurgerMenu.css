@@ -17,9 +17,36 @@
   justify-content: space-between;
 }
 
-/* Show burger icon only on mobile */
-@media (max-width: 768px) {
-  .burger-icon {
+/* Show burger icon based on language and screen size */
+/* English: show on screens < 1200px */
+body.lang-en .burger-icon {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  body.lang-en .burger-icon {
+    display: flex;
+  }
+}
+
+/* Polish: show on screens < 1250px */
+body.lang-pl .burger-icon {
+  display: none;
+}
+
+@media (max-width: 1249px) {
+  body.lang-pl .burger-icon {
+    display: flex;
+  }
+}
+
+/* Russian: show on screens < 1350px */
+body.lang-ru .burger-icon {
+  display: none;
+}
+
+@media (max-width: 1349px) {
+  body.lang-ru .burger-icon {
     display: flex;
   }
 }
@@ -215,11 +242,30 @@
   animation-delay: 0.25s;
 }
 
-/* Desktop - hide burger menu */
-@media (min-width: 769px) {
-  .burger-icon,
-  .mobile-menu,
-  .menu-overlay {
+/* Desktop - hide burger menu based on language */
+/* English: hide on screens >= 1200px */
+@media (min-width: 1200px) {
+  body.lang-en .burger-icon,
+  body.lang-en .mobile-menu,
+  body.lang-en .menu-overlay {
+    display: none !important;
+  }
+}
+
+/* Polish: hide on screens >= 1250px */
+@media (min-width: 1250px) {
+  body.lang-pl .burger-icon,
+  body.lang-pl .mobile-menu,
+  body.lang-pl .menu-overlay {
+    display: none !important;
+  }
+}
+
+/* Russian: hide on screens >= 1350px */
+@media (min-width: 1350px) {
+  body.lang-ru .burger-icon,
+  body.lang-ru .mobile-menu,
+  body.lang-ru .menu-overlay {
     display: none !important;
   }
 }

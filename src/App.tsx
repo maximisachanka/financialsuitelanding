@@ -37,8 +37,8 @@ function Header() {
           <p className="font-bold text-lg sm:text-xl lg:text-2xl text-[#5a7ff8]">FinancialSuite</p>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-14">
+        {/* Desktop Navigation - controlled by CSS based on language */}
+        <nav className="items-center gap-8 lg:gap-14">
           <a href="#why-us" className="font-bold text-sm lg:text-base text-black hover:text-[#5a7ff8] transition-colors">{t.header.nav.whyUs}</a>
           <a href="#how-it-works" className="font-bold text-sm lg:text-base text-black hover:text-[#5a7ff8] transition-colors">{t.header.nav.howItWorks}</a>
           <a href="#faq" className="font-bold text-sm lg:text-base text-black hover:text-[#5a7ff8] transition-colors">{t.header.nav.faq}</a>

@@ -110,6 +110,15 @@ function detectUserLanguage(): Language {
 export function LocalizationProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => detectUserLanguage());
 
+  // Update body class when language changes
+  useEffect(() => {
+    // Remove all language classes
+    document.body.classList.remove('lang-en', 'lang-ru', 'lang-pl');
+    // Add current language class
+    document.body.classList.add(`lang-${language}`);
+    console.log('🌐 Language class updated:', `lang-${language}`);
+  }, [language]);
+
   // Wrapper for setLanguage that marks the language as manually selected
   const setLanguage = (lang: Language) => {
     console.log('🖱️ User manually selected language:', lang);

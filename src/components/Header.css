@@ -49,3 +49,36 @@ div[id] {
     scroll-margin-top: 80px;
   }
 }
+
+/* Desktop Navigation - Language-specific breakpoints */
+/* Hide navigation by default on all screens */
+header nav {
+  display: none;
+}
+
+/* English: show navigation on screens >= 1250px */
+@media (min-width: 1200px) {
+  body.lang-en header nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+/* Polish: show navigation on screens >= 1300px */
+@media (min-width: 1250px) {
+  body.lang-pl header nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+/* Russian: show navigation on screens >= 1400px */
+@media (min-width: 1350px) {
+  body.lang-ru header nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
