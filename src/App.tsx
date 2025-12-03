@@ -22,6 +22,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { useLocalization } from './context/LocalizationContext';
+import './components/BurgerMenu.css';
+import './components/Header.css';
 
 // Header Component
 function Header() {
@@ -29,21 +31,55 @@ function Header() {
 
   return (
     <header className="w-full px-4 sm:px-8 lg:px-[154px] py-6 lg:py-10">
-      <div className="max-w-[1440px] mx-auto flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto flex items-center justify-between relative">
         <div className="flex items-center gap-3">
           <img alt="Logo" className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12" src={img128X1281} />
           <p className="font-bold text-lg sm:text-xl lg:text-2xl text-[#5a7ff8]">FinancialSuite</p>
         </div>
 
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 lg:gap-14">
           <a href="#why-us" className="font-bold text-sm lg:text-base text-black hover:text-[#5a7ff8] transition-colors">{t.header.nav.whyUs}</a>
           <a href="#how-it-works" className="font-bold text-sm lg:text-base text-black hover:text-[#5a7ff8] transition-colors">{t.header.nav.howItWorks}</a>
           <a href="#faq" className="font-bold text-sm lg:text-base text-black hover:text-[#5a7ff8] transition-colors">{t.header.nav.faq}</a>
           <LanguageSwitcher />
-          <button className="border-2 border-[#5a7ff8] text-[#5a7ff8] font-bold px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm hover:bg-[#5a7ff8] hover:text-white transition-colors">
+          <a href="#demo-form" className="border-2 border-[#5a7ff8] text-[#5a7ff8] font-bold px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm hover:bg-[#5a7ff8] hover:text-white transition-colors">
             {t.header.nav.tryDemo}
-          </button>
+          </a>
         </nav>
+
+        {/* Burger Menu for Mobile */}
+        <input type="checkbox" id="burger-menu-toggle" className="burger-menu-checkbox" />
+
+        <label htmlFor="burger-menu-toggle" className="burger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <label htmlFor="burger-menu-toggle" className="menu-overlay"></label>
+
+        <div className="mobile-menu">
+          <nav>
+            <label htmlFor="burger-menu-toggle">
+              <a href="#why-us">{t.header.nav.whyUs}</a>
+            </label>
+            <label htmlFor="burger-menu-toggle">
+              <a href="#how-it-works">{t.header.nav.howItWorks}</a>
+            </label>
+            <label htmlFor="burger-menu-toggle">
+              <a href="#faq">{t.header.nav.faq}</a>
+            </label>
+          </nav>
+          <label htmlFor="burger-menu-toggle">
+            <a href="#demo-form" className="mobile-menu-button">
+              {t.header.nav.tryDemo}
+            </a>
+          </label>
+          <div className="language-switcher-wrapper">
+            <LanguageSwitcher />
+          </div>
+        </div>
       </div>
     </header>
   );
@@ -82,9 +118,9 @@ function HeroSection() {
             </p>
           </div>
 
-          <button className="bg-[#5a7ff8] text-white font-bold px-8 sm:px-12 lg:px-[47px] py-3 sm:py-4 lg:h-[64px] rounded-full text-sm sm:text-base hover:bg-[#4968d4] hover:shadow-[0_8px_30px_rgba(90,127,248,0.5)] hover:scale-105 transform transition-all duration-300 shadow-lg animate-[fadeIn_2s_ease-in]">
+          <a href="#demo-form" className="bg-[#5a7ff8] text-white font-bold px-8 sm:px-12 lg:px-[47px] py-3 sm:py-4 lg:h-[64px] rounded-full text-sm sm:text-base hover:bg-[#4968d4] hover:shadow-[0_8px_30px_rgba(90,127,248,0.5)] hover:scale-105 transform transition-all duration-300 shadow-lg animate-[fadeIn_2s_ease-in] inline-flex items-center justify-center">
             {t.hero.cta}
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -99,7 +135,7 @@ function FeaturesSection() {
     <section className="relative w-full px-4 sm:px-8 lg:px-[112px] py-12 sm:py-16 lg:py-[64px]">
       <div className="max-w-[1440px] mx-auto space-y-12 sm:space-y-16 lg:space-y-[64px]">
         {/* Feature Card 1 - Ready to reduce costs */}
-        <div className="bg-[#f9fafd] rounded-[49px] p-6 sm:p-12 lg:p-[72px] lg:px-[104px] hover:shadow-2xl transition-all duration-500 hover:bg-white" data-aos="fade-right">
+        <div id="demo-form" className="bg-[#f9fafd] rounded-[49px] p-6 sm:p-12 lg:p-[72px] lg:px-[104px] hover:shadow-2xl transition-all duration-500 hover:bg-white" data-aos="fade-right">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center max-w-[1216px] mx-auto">
             <div className="space-y-6 order-2 lg:order-1 mx-auto lg:mx-0 flex flex-col items-center lg:items-start text-center lg:text-left">
               <div className="w-12 h-12 bg-[#5a7ff8] rounded-2xl flex items-center justify-center transform hover:rotate-12 hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -130,7 +166,7 @@ function FeaturesSection() {
                   placeholder={t.features.reduce.form.company}
                   className="w-full h-[40px] px-4 py-3 border border-[rgba(0,0,0,0.4)] rounded-2xl text-base font-bold text-[rgba(0,0,0,0.4)] bg-white focus:border-[#5a7ff8] focus:ring-2 focus:ring-[#5a7ff8]/20 focus:outline-none transition-all duration-300"
                 />
-                <button className="bg-[#5a7ff8] text-white font-bold h-[42px] px-8 rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md">
+                <button className="bg-[#5a7ff8] text-white font-bold h-[42px] px-8 rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md flex items-center justify-center">
                   {t.features.reduce.form.submit}
                 </button>
               </form>
@@ -222,9 +258,9 @@ function WhyUsSection() {
           <p className="font-bold text-xl sm:text-2xl leading-[48px] text-[rgba(36,54,94,0.4)] max-w-[750px] mx-auto tracking-[-0.48px]">
             {t.whyUsSection.bottomText}
           </p>
-          <button className="bg-[#5a7ff8] text-white font-bold px-8 py-3 h-[42px] rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md">
+          <a href="#demo-form" className="bg-[#5a7ff8] text-white font-bold px-8 py-3 h-[42px] rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md inline-flex items-center justify-center">
             {t.whyUsSection.cta}
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -353,7 +389,7 @@ function TestimonialsSection() {
                   <p className="text-sm sm:text-base text-black/40">{testimonial.position}</p>
                 </div>
               </div>
-              <button className="bg-[#5a7ff8] text-white font-bold px-6 py-2.5 h-[42px] rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md w-fit">
+              <button className="bg-[#5a7ff8] text-white font-bold px-6 py-2.5 h-[42px] rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md w-fit flex items-center justify-center">
                 {t.testimonials.readCase}
               </button>
             </div>
@@ -548,7 +584,7 @@ function Footer() {
                   placeholder={t.footer.cta.form.company}
                   className="w-full px-4 py-3 border border-black/40 rounded-2xl text-sm sm:text-base bg-white focus:border-[#5a7ff8] focus:ring-2 focus:ring-[#5a7ff8]/20 focus:outline-none transition-all duration-300 hover:border-[#5a7ff8]/60"
                 />
-                <button className="bg-[#5a7ff8] text-white font-bold px-8 py-3 rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md">
+                <button className="bg-[#5a7ff8] text-white font-bold px-8 py-3 rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md flex items-center justify-center">
                   {t.footer.cta.form.submit}
                 </button>
               </form>

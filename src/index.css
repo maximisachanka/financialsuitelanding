@@ -1649,12 +1649,6 @@
   }
 
   @media (width >= 64rem) {
-    .lg\:h-\[64px\] {
-      height: 64px;
-    }
-  }
-
-  @media (width >= 64rem) {
     .lg\:h-\[72px\] {
       height: 72px;
     }

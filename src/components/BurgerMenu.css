@@ -1,0 +1,225 @@
+/* Burger Menu Styles - Pure CSS */
+
+/* Hide checkbox */
+.burger-menu-checkbox {
+  display: none;
+}
+
+/* Burger icon container */
+.burger-icon {
+  display: none;
+  cursor: pointer;
+  position: relative;
+  width: 30px;
+  height: 24px;
+  z-index: 250;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Show burger icon only on mobile */
+@media (max-width: 768px) {
+  .burger-icon {
+    display: flex;
+  }
+}
+
+/* Burger lines */
+.burger-icon span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #5a7ff8;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animate burger to X when checked */
+.burger-menu-checkbox:checked ~ .burger-icon span:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+}
+
+.burger-menu-checkbox:checked ~ .burger-icon span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.burger-menu-checkbox:checked ~ .burger-icon span:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafd 100%);
+  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+  transition: right 0.35s cubic-bezier(0.4, 0.0, 0.2, 1);
+  z-index: 200;
+  padding: 80px 24px 24px;
+  overflow-y: auto;
+}
+
+/* Show menu when checkbox is checked */
+.burger-menu-checkbox:checked ~ .mobile-menu {
+  right: 0;
+}
+
+/* Overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  z-index: 150;
+  cursor: pointer;
+}
+
+.burger-menu-checkbox:checked ~ .menu-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile menu navigation */
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mobile-menu nav label {
+  cursor: pointer;
+  display: block;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.mobile-menu nav a {
+  font-weight: bold;
+  font-size: 18px;
+  color: #1a1a1a;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.mobile-menu nav label:hover a {
+  background-color: #e4eaff;
+  color: #5a7ff8;
+  transform: translateX(8px);
+}
+
+/* Mobile menu button wrapper */
+.mobile-menu nav ~ label {
+  margin-top: 24px;
+  display: block;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+/* Mobile menu button */
+.mobile-menu-button {
+  width: 100%;
+  border: 2px solid #5a7ff8;
+  background: transparent;
+  color: #5a7ff8;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+}
+
+.mobile-menu-button:hover {
+  background-color: #5a7ff8;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Language switcher in mobile menu */
+.mobile-menu .language-switcher-wrapper {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e4eaff;
+  opacity: 0;
+  transform: translateX(20px);
+  display: block;
+}
+
+/* Override responsive styles for language switcher in mobile menu */
+.mobile-menu .language-switcher__lang-name {
+  display: inline !important;
+  font-size: 14px !important;
+}
+
+.mobile-menu .language-switcher__flag-circle {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.mobile-menu .language-switcher__button {
+  padding: 6px 12px 6px 6px !important;
+  gap: 6px !important;
+}
+
+/* Animation for menu items */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.burger-menu-checkbox:checked ~ .mobile-menu nav label,
+.burger-menu-checkbox:checked ~ .mobile-menu nav ~ label,
+.burger-menu-checkbox:checked ~ .mobile-menu .language-switcher-wrapper {
+  animation: fadeSlideIn 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+.burger-menu-checkbox:checked ~ .mobile-menu nav label:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.burger-menu-checkbox:checked ~ .mobile-menu nav label:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.burger-menu-checkbox:checked ~ .mobile-menu nav label:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.burger-menu-checkbox:checked ~ .mobile-menu nav ~ label {
+  animation-delay: 0.2s;
+}
+
+.burger-menu-checkbox:checked ~ .mobile-menu .language-switcher-wrapper {
+  animation-delay: 0.25s;
+}
+
+/* Desktop - hide burger menu */
+@media (min-width: 769px) {
+  .burger-icon,
+  .mobile-menu,
+  .menu-overlay {
+    display: none !important;
+  }
+}
