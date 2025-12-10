@@ -27,7 +27,6 @@ dist-ssr
 # Build output
 *.tsbuildinfo
 .build
-build/
 
 # Environment variables
 .env
