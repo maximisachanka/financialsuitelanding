@@ -21,6 +21,7 @@ import { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
+import { SplashScreen } from './components/SplashScreen';
 import { useLocalization } from './context/LocalizationContext';
 import './components/BurgerMenu.css';
 import './components/Header.css';
@@ -598,6 +599,10 @@ function Footer() {
 
 // Main App Component
 export default function App() {
+  const { isLanguageLoaded } = useLocalization();
+  const [showSplash, setShowSplash] = useState(true);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -607,16 +612,41 @@ export default function App() {
     });
   }, []);
 
+  // Minimum splash screen time: 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMinTimeElapsed(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Hide splash screen when both conditions are met:
+  // 1. Language is loaded
+  // 2. Minimum time (2s) has elapsed
+  useEffect(() => {
+    if (isLanguageLoaded && minTimeElapsed) {
+      // Add a small delay for smooth fade-out animation
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isLanguageLoaded, minTimeElapsed]);
+
   return (
-    <div className="bg-white min-h-screen w-full overflow-x-hidden scroll-smooth">
-      <Header />
-      <HeroSection />
-      <FeaturesSection />
-      <WhyUsSection />
-      <HowItWorksSection />
-      <WhatWeDoSection />
-      <FAQSection />
-      <Footer />
-    </div>
+    <>
+      {showSplash && <SplashScreen isLoaded={isLanguageLoaded} />}
+      <div className="bg-white min-h-screen w-full overflow-x-hidden scroll-smooth">
+        <Header />
+        <HeroSection />
+        <FeaturesSection />
+        <WhyUsSection />
+        <HowItWorksSection />
+        <WhatWeDoSection />
+        <FAQSection />
+        <Footer />
+      </div>
+    </>
   );
 }

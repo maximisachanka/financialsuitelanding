@@ -1,0 +1,273 @@
+/* SplashScreen - Pure CSS, no Tailwind */
+
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafd 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+  animation: splashFadeOut 0.5s ease-out 0s 1 normal forwards;
+  animation-play-state: paused;
+}
+
+.splash-screen.fade-out {
+  animation-play-state: running;
+}
+
+/* Content container */
+.splash-screen__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  animation: contentFadeIn 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+/* Logo container with pulse animation */
+.splash-screen__logo-container {
+  width: 80px;
+  height: 80px;
+  background: rgba(90, 127, 248, 0.1);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: logoPulse 2s ease-in-out infinite;
+  box-shadow: 0 8px 30px rgba(90, 127, 248, 0.15);
+}
+
+.splash-screen__logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+/* Brand name */
+.splash-screen__brand {
+  font-family: 'Figtree', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #5a7ff8;
+  margin: 0;
+  letter-spacing: -0.5px;
+  animation: brandSlideUp 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) 0.2s backwards;
+}
+
+/* Loading spinner container */
+.splash-screen__loader {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  margin-top: 8px;
+  animation: loaderFadeIn 0.4s ease-out 0.4s backwards;
+}
+
+/* Spinner animation */
+.splash-screen__spinner {
+  width: 100%;
+  height: 100%;
+  border: 4px solid #e4eaff;
+  border-top-color: #5a7ff8;
+  border-radius: 50%;
+  animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  box-shadow: 0 4px 15px rgba(90, 127, 248, 0.2);
+}
+
+/* Loading text */
+.splash-screen__text {
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #24365e;
+  opacity: 0.6;
+  margin: 0;
+  animation: textPulse 1.5s ease-in-out infinite;
+}
+
+/* Background gradient circles */
+.splash-screen__bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(90, 127, 248, 0.15) 0%, rgba(90, 127, 248, 0.05) 50%, transparent 100%);
+  filter: blur(60px);
+  pointer-events: none;
+  animation: circleFloat 8s ease-in-out infinite;
+}
+
+.splash-screen__bg-circle--1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.splash-screen__bg-circle--2 {
+  width: 350px;
+  height: 350px;
+  bottom: -80px;
+  right: -80px;
+  animation-delay: 1s;
+  animation-direction: reverse;
+}
+
+/* Animations */
+
+/* Fade out the entire splash screen */
+@keyframes splashFadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Content fade in */
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo pulse */
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 30px rgba(90, 127, 248, 0.15);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(90, 127, 248, 0.25);
+  }
+}
+
+/* Brand slide up */
+@keyframes brandSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loader fade in */
+@keyframes loaderFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Spinner rotation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Text pulse */
+@keyframes textPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Circle floating animation */
+@keyframes circleFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(30px, -30px) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .splash-screen__logo-container {
+    width: 64px;
+    height: 64px;
+  }
+
+  .splash-screen__logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .splash-screen__brand {
+    font-size: 24px;
+  }
+
+  .splash-screen__loader {
+    width: 40px;
+    height: 40px;
+  }
+
+  .splash-screen__spinner {
+    border-width: 3px;
+  }
+
+  .splash-screen__text {
+    font-size: 12px;
+  }
+
+  .splash-screen__bg-circle--1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .splash-screen__bg-circle--2 {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen,
+  .splash-screen__content,
+  .splash-screen__logo-container,
+  .splash-screen__brand,
+  .splash-screen__loader,
+  .splash-screen__text,
+  .splash-screen__bg-circle {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .splash-screen__spinner {
+    animation: none;
+    border-top-color: #5a7ff8;
+  }
+}
