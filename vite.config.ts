@@ -2,9 +2,23 @@
   import { defineConfig } from 'vite';
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
+  import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
   export default defineConfig({
-    plugins: [react()],
+    plugins: [
+      react(),
+      ViteImageOptimizer({
+        png: {
+          quality: 80,
+        },
+        jpeg: {
+          quality: 80,
+        },
+        jpg: {
+          quality: 80,
+        },
+      }),
+    ],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
@@ -66,6 +80,7 @@
         '@': path.resolve(__dirname, './src'),
       },
     },
+    base: './',
     build: {
       target: 'esnext',
       outDir: 'build',
