@@ -9,4 +9,3 @@ const fixed = appContent
   .replace(/font-\['Figtree:SemiBold',sans-serif\]/g, 'font-semibold');
 
 fs.writeFileSync('./App.tsx', fixed, 'utf8');
-console.log('Fixed font classes');
