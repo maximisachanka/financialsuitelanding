@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "WebFetch(domain:app.f-suite.com)"
     ],
     "deny": [],
     "ask": []

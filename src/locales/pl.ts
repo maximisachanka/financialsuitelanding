@@ -139,6 +139,27 @@ export const pl = {
       }
     ]
   },
+  partnerPage: {
+    hero: {
+      badge: "Współpraca",
+      title: "Interesuje Cię współpraca?",
+      subtitle: "Jeśli jesteś zainteresowany współpracą z F-Suite, wypełnij formularz poniżej, a skontaktujemy się z Tobą",
+      cta: "Skontaktuj się z nami"
+    },
+    cta: {
+      badge: "Skontaktuj się",
+      title: "Pracujmy razem",
+      subtitle: "Wypełnij formularz, a nasz zespół skontaktuje się z Tobą w ciągu 24 godzin",
+      form: {
+        name: "Pełne imię i nazwisko",
+        email: "Email",
+        company: "Nazwa firmy",
+        phone: "Numer telefonu",
+        message: "Opowiedz nam o swoim zapytaniu",
+        submit: "Wyślij zapytanie"
+      }
+    }
+  },
   footer: {
     description: "Obniż koszty stałe o 40-50% dzięki narzędziu optymalizacji opartemu na AI",
     legal: {

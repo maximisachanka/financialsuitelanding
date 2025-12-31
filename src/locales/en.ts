@@ -139,6 +139,27 @@ export const en = {
       }
     ]
   },
+  partnerPage: {
+    hero: {
+      badge: "Cooperation",
+      title: "Interested in Cooperation?",
+      subtitle: "If you're interested in collaborating with F-Suite, fill out the form below and we'll get back to you",
+      cta: "Contact Us"
+    },
+    cta: {
+      badge: "Get in Touch",
+      title: "Let's Work Together",
+      subtitle: "Fill out the form and our team will contact you within 24 hours",
+      form: {
+        name: "Full Name",
+        email: "Email",
+        company: "Company Name",
+        phone: "Phone Number",
+        message: "Tell us about your inquiry",
+        submit: "Submit Request"
+      }
+    }
+  },
   footer: {
     description: "Cut your fixed costs by 40-50% with AI-Powered optimization tool",
     legal: {
