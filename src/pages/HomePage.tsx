@@ -1,5 +1,4 @@
 import svgPaths from "../imports/svg-cogyjin2po";
-import imgEllipse1 from "figma:asset/3484287c39d20ad9e78c4e35767fbf8aafcd06b8.png";
 import img599151 from "figma:asset/d49350460393f2d896c13e87d9ce7a1de715d770.png";
 import imgHandDrawnInternationalTradeIllustrated1 from "figma:asset/360892e9378ede21394b51e62f6c410f09f4c0ec.png";
 import imgHandDrawnInternationalTradeIllustrated2 from "figma:asset/6f153b9573f5f80d955e408cf347b79f8e2e607f.png";
@@ -291,46 +290,6 @@ function WhatWeDoSection() {
   );
 }
 
-// Testimonials Section
-function TestimonialsSection() {
-  const { t } = useLocalization();
-
-  return (
-    <section id="reviews" className="relative w-full px-4 sm:px-8 lg:px-0 py-12 sm:py-16 lg:py-[64px] bg-white">
-      <div className="max-w-[1440px] mx-auto">
-        <div className="text-center space-y-4 sm:space-y-6 lg:space-y-8 mb-12 sm:mb-16 lg:mb-[88px]">
-          <p className="font-bold text-xs sm:text-[13px] text-[#5a7ff8] tracking-[0.91px] uppercase">{t.testimonials.badge}</p>
-          <h2 className="font-bold text-2xl sm:text-3xl lg:text-[40px] lg:leading-[48px] text-black tracking-[-0.8px]">
-            {t.testimonials.title}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-4 sm:px-8 lg:px-[128px]">
-          {t.testimonials.cases.map((testimonial, i) => (
-            <div key={i} className="bg-[#f4f6fa] rounded-[32px] p-6 sm:p-8 lg:p-[56px] lg:pt-[27px] lg:pb-[56px] space-y-6 lg:space-y-12 h-auto lg:h-[418px] flex flex-col group hover:bg-white hover:shadow-2xl hover:scale-105 transform transition-all duration-500">
-              <div className="w-16 h-16 sm:w-18 sm:h-18 lg:w-[72px] lg:h-[72px] bg-gray-200 rounded-full group-hover:bg-[#5a7ff8]/10 transition-colors duration-300" />
-              <div className="space-y-4 flex-1">
-                <p className="font-bold text-2xl sm:text-3xl lg:text-[40px] lg:leading-[48px] text-black tracking-[-0.8px] group-hover:text-[#5a7ff8] transition-colors duration-300">{testimonial.company}</p>
-                <p className="font-medium text-lg sm:text-xl lg:text-2xl text-[#747474] group-hover:text-[#5a7ff8] transition-colors duration-300">{testimonial.stat}</p>
-                <p className="font-bold text-lg sm:text-xl lg:text-2xl text-[#24365e] group-hover:text-black transition-colors duration-300">{testimonial.quote}</p>
-              </div>
-              <div className="flex items-center gap-4 pt-6">
-                <img alt={testimonial.author} className="w-14 h-14 lg:w-[56px] lg:h-[56px] rounded-full group-hover:scale-110 transition-transform duration-300 shadow-md" src={imgEllipse1} />
-                <div>
-                  <p className="font-bold text-base sm:text-lg text-[#24365e]">{testimonial.author}</p>
-                  <p className="text-sm sm:text-base text-black/40">{testimonial.position}</p>
-                </div>
-              </div>
-              <button className="bg-[#5a7ff8] text-white font-bold px-6 py-2.5 h-[42px] rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md w-fit flex items-center justify-center">
-                {t.testimonials.readCase}
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // FAQ Section
 function FAQSection() {
@@ -412,7 +371,6 @@ export default function HomePage() {
       <WhyUsSection />
       <HowItWorksSection />
       <WhatWeDoSection />
-      <TestimonialsSection />
       <FAQSection />
     </>
   );

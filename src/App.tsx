@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage';
 import PartnerPage from './pages/PartnerPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
+import ScrollToTop from './components/ScrollToTop';
 import img128X1281 from "figma:asset/fb623f6b059b888cf4155f7c95166d688f80915a.png";
 import svgPaths from "./imports/svg-cogyjin2po";
 
@@ -240,6 +241,7 @@ export default function App() {
     <>
       {showSplash && <SplashScreen isLoaded={isLanguageLoaded} />}
       <div className="bg-white min-h-screen w-full overflow-x-hidden scroll-smooth">
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
