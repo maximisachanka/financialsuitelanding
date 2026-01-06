@@ -70,7 +70,7 @@
   border-radius: 999px;
   font-size: 16px;
   border: none;
-  cursor: pointer;
+  cursor: pointer !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -532,7 +532,7 @@
   border-radius: 999px;
   font-size: 16px;
   border: none;
-  cursor: pointer;
+  cursor: pointer !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;

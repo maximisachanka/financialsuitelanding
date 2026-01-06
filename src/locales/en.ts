@@ -163,7 +163,7 @@ export const en = {
   privacyPage: {
     badge: "Legal",
     title: "Privacy Policy",
-    lastUpdated: "Last updated: December 31, 2024",
+    lastUpdated: "Last updated: January 6, 2026",
     toc: {
       title: "Table of Contents",
       items: [
@@ -284,7 +284,7 @@ export const en = {
   termsPage: {
     badge: "Legal",
     title: "Terms of Service",
-    lastUpdated: "Last updated: December 31, 2024",
+    lastUpdated: "Last updated: January 6, 2026",
     toc: {
       title: "Table of Contents",
       items: [
@@ -499,5 +499,10 @@ export const en = {
         submit: "Submit request"
       }
     }
+  },
+  alerts: {
+    languageChanged: "Language changed to English",
+    formSuccess: "Thank you! Your request has been sent successfully.",
+    formError: "Sorry, there was an error sending your request. Please try again."
   }
 };

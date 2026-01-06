@@ -163,7 +163,7 @@ export const pl = {
   privacyPage: {
     badge: "Informacje prawne",
     title: "Polityka prywatności",
-    lastUpdated: "Ostatnia aktualizacja: 31 grudnia 2024 r.",
+    lastUpdated: "Ostatnia aktualizacja: 6 stycznia 2026 r.",
     toc: {
       title: "Spis treści",
       items: [
@@ -284,7 +284,7 @@ export const pl = {
   termsPage: {
     badge: "Informacje prawne",
     title: "Warunki świadczenia usług",
-    lastUpdated: "Ostatnia aktualizacja: 31 grudnia 2024 r.",
+    lastUpdated: "Ostatnia aktualizacja: 6 stycznia 2026 r.",
     toc: {
       title: "Spis treści",
       items: [
@@ -499,5 +499,10 @@ export const pl = {
         submit: "Wyślij zapytanie"
       }
     }
+  },
+  alerts: {
+    languageChanged: "Język zmieniony na Polski",
+    formSuccess: "Dziękujemy! Twoje zapytanie zostało wysłane pomyślnie.",
+    formError: "Przepraszamy, wystąpił błąd podczas wysyłania zapytania. Spróbuj ponownie."
   }
 };

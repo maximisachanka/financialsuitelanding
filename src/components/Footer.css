@@ -1,0 +1,44 @@
+/* Footer Links Styles */
+
+.footer-link {
+  font-weight: 500;
+  color: #5a7ff8;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #5a7ff8;
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Responsive font sizes */
+@media (min-width: 640px) {
+  .footer-link {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-link {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 639px) {
+  .footer-link {
+    font-size: 14px;
+  }
+}

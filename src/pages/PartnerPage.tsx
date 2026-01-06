@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocalization } from '../context/LocalizationContext';
 import './PartnerPage.css';
+import '../styles/FormStyles.css';
 import AOS from 'aos';
+import { sendPartnerFormEmail } from '../services/emailService';
+import { useAlert } from '../context/AlertContext';
 
 // Hero Section with Form
 function HeroWithForm() {
@@ -29,11 +32,34 @@ function HeroWithForm() {
 // CTA Section with Form
 function CTASection() {
   const { t } = useLocalization();
+  const { showAlert } = useAlert();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add form submission logic here
-    alert('Form submitted! We will contact you soon.');
+    setIsSubmitting(true);
+
+    const result = await sendPartnerFormEmail(formData);
+
+    if (result.success) {
+      setFormData({ name: '', email: '', company: '', phone: '', message: '' });
+      showAlert('success', t.alerts.formSuccess);
+    } else {
+      showAlert('error', t.alerts.formError);
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -49,34 +75,54 @@ function CTASection() {
           <form className="partner-form" onSubmit={handleSubmit}>
             <input
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               className="partner-form-input"
-              placeholder={t.partnerPage.cta.form.name}
+              placeholder={`${t.partnerPage.cta.form.name} *`}
               required
             />
             <input
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               className="partner-form-input"
-              placeholder={t.partnerPage.cta.form.email}
+              placeholder={`${t.partnerPage.cta.form.email} *`}
               required
             />
             <input
               type="text"
+              name="company"
+              value={formData.company}
+              onChange={handleChange}
               className="partner-form-input"
-              placeholder={t.partnerPage.cta.form.company}
+              placeholder={`${t.partnerPage.cta.form.company} *`}
               required
             />
             <input
               type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
               className="partner-form-input"
               placeholder={t.partnerPage.cta.form.phone}
             />
             <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
               className="partner-form-textarea"
               placeholder={t.partnerPage.cta.form.message}
               rows={4}
             ></textarea>
-            <button type="submit" className="partner-form-submit">
-              {t.partnerPage.cta.form.submit}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="partner-form-submit"
+              style={{ opacity: isSubmitting ? 0.5 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}
+            >
+              {isSubmitting ? 'Sending...' : t.partnerPage.cta.form.submit}
             </button>
           </form>
         </div>

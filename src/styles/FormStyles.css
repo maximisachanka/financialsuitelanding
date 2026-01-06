@@ -1,0 +1,62 @@
+/* Form Styles - Cursor Fix */
+/* This file ensures proper cursor on form elements */
+
+/* All form inputs should have text/auto cursor, NOT pointer */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+textarea {
+  cursor: text !important;
+}
+
+select {
+  cursor: pointer !important;
+}
+
+/* All form BUTTONS always show pointer */
+button,
+button[type="submit"],
+button[type="button"],
+button[type="reset"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.form-button,
+.submit-button,
+.btn,
+a.button {
+  cursor: pointer !important;
+}
+
+/* Disabled state should show not-allowed */
+input:disabled,
+textarea:disabled,
+button:disabled,
+select:disabled,
+input[disabled],
+textarea[disabled],
+button[disabled],
+select[disabled] {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
+
+/* Partner form specific - inputs should be text cursor */
+.partner-form-input,
+.partner-form-textarea {
+  cursor: text !important;
+}
+
+/* Partner form submit button - pointer cursor */
+.partner-form-submit {
+  cursor: pointer !important;
+}
+
+/* Links that look like buttons - pointer cursor */
+a[class*="button"],
+a[class*="btn"],
+a[class*="cta"] {
+  cursor: pointer !important;
+}

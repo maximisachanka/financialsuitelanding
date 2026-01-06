@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocalization } from '../context/LocalizationContext';
 import { Language as LanguageType } from '../locales';
+import { en } from '../locales/en';
+import { ru } from '../locales/ru';
+import { pl } from '../locales/pl';
 import './LanguageSwitcher.css';
+import { useAlert } from '../context/AlertContext';
 
 interface Language {
   code: LanguageType;
@@ -49,7 +53,8 @@ const FlagIcon = ({ code }: { code: string }) => {
 };
 
 export function LanguageSwitcher() {
-  const { language, setLanguage } = useLocalization();
+  const { language, setLanguage, t } = useLocalization();
+  const { showAlert } = useAlert();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -67,7 +72,17 @@ export function LanguageSwitcher() {
   }, []);
 
   const handleLanguageChange = (lang: Language) => {
-    setLanguage(lang.code);
+    if (lang.code !== language) {
+      // Get translation from NEW language directly
+      const translations = { en, ru, pl };
+      const newLanguageTranslation = translations[lang.code];
+
+      setLanguage(lang.code);
+      // Show alert with new language message
+      setTimeout(() => {
+        showAlert('info', newLanguageTranslation.alerts.languageChanged);
+      }, 100);
+    }
     setIsOpen(false);
   };
 

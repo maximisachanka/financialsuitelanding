@@ -56,7 +56,7 @@ header nav {
   display: none;
 }
 
-/* English: show navigation on screens >= 1250px */
+/* English: show navigation on screens >= 1200px */
 @media (min-width: 1200px) {
   body.lang-en header nav {
     display: flex;
@@ -65,7 +65,7 @@ header nav {
   }
 }
 
-/* Polish: show navigation on screens >= 1300px */
+/* Polish: show navigation on screens >= 1250px */
 @media (min-width: 1250px) {
   body.lang-pl header nav {
     display: flex;
@@ -74,11 +74,30 @@ header nav {
   }
 }
 
-/* Russian: show navigation on screens >= 1400px */
+/* Russian: show navigation on screens >= 1350px */
 @media (min-width: 1350px) {
   body.lang-ru header nav {
     display: flex;
     align-items: center;
     gap: 2rem;
+  }
+}
+
+/* Ensure larger gap on very large screens */
+@media (min-width: 1440px) {
+  header nav {
+    gap: 3.5rem;
+  }
+}
+
+/* Ultra-wide screens optimization */
+@media (min-width: 1920px) {
+  header nav {
+    gap: 4rem;
+  }
+
+  header {
+    padding-left: 200px !important;
+    padding-right: 200px !important;
   }
 }

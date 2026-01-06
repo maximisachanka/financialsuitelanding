@@ -3,6 +3,9 @@
 /* Hide checkbox */
 .burger-menu-checkbox {
   display: none;
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
 }
 
 /* Burger icon container */
@@ -15,6 +18,13 @@
   z-index: 250;
   flex-direction: column;
   justify-content: space-between;
+}
+
+/* When menu is open, position burger icon (X) at top right of menu */
+.burger-menu-checkbox:checked ~ .burger-icon {
+  position: fixed;
+  right: 24px;
+  top: 24px;
 }
 
 /* Show burger icon based on language and screen size */
@@ -91,9 +101,21 @@ body.lang-ru .burger-icon {
   overflow-y: auto;
 }
 
+/* Wider mobile menu on tablets */
+@media (min-width: 640px) and (max-width: 1199px) {
+  .mobile-menu {
+    width: 320px;
+  }
+}
+
 /* Show menu when checkbox is checked */
 .burger-menu-checkbox:checked ~ .mobile-menu {
   right: 0;
+}
+
+/* Prevent body scroll when menu is open */
+body:has(.burger-menu-checkbox:checked) {
+  overflow: hidden;
 }
 
 /* Overlay */
@@ -141,10 +163,19 @@ body.lang-ru .burger-icon {
   display: block;
 }
 
-.mobile-menu nav label:hover a {
+.mobile-menu nav label:hover a,
+.mobile-menu nav a:hover {
   background-color: #e4eaff;
   color: #5a7ff8;
   transform: translateX(8px);
+}
+
+/* Larger text on tablets */
+@media (min-width: 640px) and (max-width: 1199px) {
+  .mobile-menu nav a {
+    font-size: 20px;
+    padding: 14px 18px;
+  }
 }
 
 /* Mobile menu button wrapper */
@@ -247,8 +278,11 @@ body.lang-ru .burger-icon {
 @media (min-width: 1200px) {
   body.lang-en .burger-icon,
   body.lang-en .mobile-menu,
-  body.lang-en .menu-overlay {
+  body.lang-en .menu-overlay,
+  body.lang-en .burger-menu-checkbox {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }
 
@@ -256,8 +290,11 @@ body.lang-ru .burger-icon {
 @media (min-width: 1250px) {
   body.lang-pl .burger-icon,
   body.lang-pl .mobile-menu,
-  body.lang-pl .menu-overlay {
+  body.lang-pl .menu-overlay,
+  body.lang-pl .burger-menu-checkbox {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }
 
@@ -265,7 +302,22 @@ body.lang-ru .burger-icon {
 @media (min-width: 1350px) {
   body.lang-ru .burger-icon,
   body.lang-ru .mobile-menu,
-  body.lang-ru .menu-overlay {
+  body.lang-ru .menu-overlay,
+  body.lang-ru .burger-menu-checkbox {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Extra safety: hide on very large screens regardless of language */
+@media (min-width: 1440px) {
+  .burger-icon,
+  .mobile-menu,
+  .menu-overlay,
+  .burger-menu-checkbox {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }

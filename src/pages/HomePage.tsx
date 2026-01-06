@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import svgPaths from "../imports/svg-cogyjin2po";
 import img599151 from "figma:asset/d49350460393f2d896c13e87d9ce7a1de715d770.png";
 import imgHandDrawnInternationalTradeIllustrated1 from "figma:asset/360892e9378ede21394b51e62f6c410f09f4c0ec.png";
@@ -15,6 +16,9 @@ import imgImage20 from "figma:asset/7d335d71137e03ee85d696f5e82186da4bb6c8df.png
 import imgPdf931 from "figma:asset/4fe3b3a6749c5e0517df48685236b67bca69b9b5.png";
 import dollarIcon from "../assets/dollar.png";
 import { useLocalization } from '../context/LocalizationContext';
+import { sendDemoFormEmail } from '../services/emailService';
+import { useAlert } from '../context/AlertContext';
+import '../styles/FormStyles.css';
 
 // Hero Section
 function HeroSection() {
@@ -49,7 +53,7 @@ function HeroSection() {
             </p>
           </div>
 
-          <a href="#demo-form" className="bg-[#5a7ff8] text-white font-bold px-8 sm:px-12 lg:px-[47px] py-3 sm:py-4 lg:h-[64px] rounded-full text-sm sm:text-base hover:bg-[#4968d4] hover:shadow-[0_8px_30px_rgba(90,127,248,0.5)] hover:scale-105 transform transition-all duration-300 shadow-lg animate-[fadeIn_2s_ease-in] inline-flex items-center justify-center">
+          <a href="#demo-form" className="bg-[#5a7ff8] text-white font-bold px-8 sm:px-12 lg:px-[47px] py-3 sm:py-4 lg:h-[64px] rounded-full text-sm sm:text-base hover:bg-[#4968d4] hover:shadow-[0_8px_30px_rgba(90,127,248,0.5)] hover:scale-105 transform transition-all duration-300 shadow-lg animate-[fadeIn_2s_ease-in] inline-flex items-center justify-center cursor-pointer">
             {t.hero.cta}
           </a>
         </div>
@@ -61,6 +65,29 @@ function HeroSection() {
 // Features Section
 function FeaturesSection() {
   const { t } = useLocalization();
+  const { showAlert } = useAlert();
+  const [formData, setFormData] = useState({ name: '', email: '', company: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const result = await sendDemoFormEmail(formData);
+
+    if (result.success) {
+      setFormData({ name: '', email: '', company: '' });
+      showAlert('success', t.alerts.formSuccess);
+    } else {
+      showAlert('error', t.alerts.formError);
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
     <section className="relative w-full px-4 sm:px-8 lg:px-[112px] py-12 sm:py-16 lg:py-[64px]">
@@ -81,24 +108,46 @@ function FeaturesSection() {
                 {t.features.reduce.subtitle}
               </p>
 
-              <form className="space-y-4 max-w-[298px] w-full">
-                <input
-                  type="text"
-                  placeholder={t.features.reduce.form.name}
-                  className="w-full h-[40px] px-4 py-3 border border-[rgba(0,0,0,0.4)] rounded-2xl text-base font-bold text-[rgba(0,0,0,0.4)] bg-white focus:border-[#5a7ff8] focus:ring-2 focus:ring-[#5a7ff8]/20 focus:outline-none transition-all duration-300"
-                />
-                <input
-                  type="email"
-                  placeholder={t.features.reduce.form.email}
-                  className="w-full h-[40px] px-4 py-3 border border-[rgba(0,0,0,0.4)] rounded-2xl text-base font-bold text-[rgba(0,0,0,0.4)] bg-white focus:border-[#5a7ff8] focus:ring-2 focus:ring-[#5a7ff8]/20 focus:outline-none transition-all duration-300"
-                />
-                <input
-                  type="text"
-                  placeholder={t.features.reduce.form.company}
-                  className="w-full h-[40px] px-4 py-3 border border-[rgba(0,0,0,0.4)] rounded-2xl text-base font-bold text-[rgba(0,0,0,0.4)] bg-white focus:border-[#5a7ff8] focus:ring-2 focus:ring-[#5a7ff8]/20 focus:outline-none transition-all duration-300"
-                />
-                <button className="bg-[#5a7ff8] text-white font-bold h-[42px] px-8 rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md flex items-center justify-center">
-                  {t.features.reduce.form.submit}
+              <form className="space-y-4 max-w-[298px] w-full" onSubmit={handleSubmit}>
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder={`${t.features.reduce.form.name} *`}
+                    className="w-full px-4 py-3 border-2 border-black/40 rounded-2xl text-base font-semibold text-black/80 bg-white focus:border-[#5a7ff8] focus:ring-0 focus:shadow-[0_0_0_3px_rgba(90,127,248,0.2)] focus:outline-none transition-all duration-300 hover:border-[#5a7ff8]/60 placeholder:text-black/40 placeholder:font-semibold"
+                    required
+                  />
+                </div>
+                <div className="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder={`${t.features.reduce.form.email} *`}
+                    className="w-full px-4 py-3 border-2 border-black/40 rounded-2xl text-base font-semibold text-black/80 bg-white focus:border-[#5a7ff8] focus:ring-0 focus:shadow-[0_0_0_3px_rgba(90,127,248,0.2)] focus:outline-none transition-all duration-300 hover:border-[#5a7ff8]/60 placeholder:text-black/40 placeholder:font-semibold"
+                    required
+                  />
+                </div>
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder={`${t.features.reduce.form.company} *`}
+                    className="w-full px-4 py-3 border-2 border-black/40 rounded-2xl text-base font-semibold text-black/80 bg-white focus:border-[#5a7ff8] focus:ring-0 focus:shadow-[0_0_0_3px_rgba(90,127,248,0.2)] focus:outline-none transition-all duration-300 hover:border-[#5a7ff8]/60 placeholder:text-black/40 placeholder:font-semibold"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-[#5a7ff8] text-white font-bold h-[42px] px-8 rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer w-full"
+                >
+                  {isSubmitting ? 'Sending...' : t.features.reduce.form.submit}
                 </button>
               </form>
             </div>
@@ -189,7 +238,7 @@ function WhyUsSection() {
           <p className="font-bold text-xl sm:text-2xl leading-[48px] text-[rgba(36,54,94,0.4)] max-w-[750px] mx-auto tracking-[-0.48px]">
             {t.whyUsSection.bottomText}
           </p>
-          <a href="#demo-form" className="bg-[#5a7ff8] text-white font-bold px-8 py-3 h-[42px] rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md inline-flex items-center justify-center">
+          <a href="#demo-form" className="bg-[#5a7ff8] text-white font-bold px-8 py-3 h-[42px] rounded-full text-sm hover:bg-[#4968d4] hover:shadow-[0_8px_20px_rgba(90,127,248,0.4)] hover:scale-105 transform transition-all duration-300 shadow-md inline-flex items-center justify-center cursor-pointer">
             {t.whyUsSection.cta}
           </a>
         </div>
