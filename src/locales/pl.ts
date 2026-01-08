@@ -297,7 +297,8 @@ export const pl = {
         { id: "termination", text: "7. Rozwiązanie" },
         { id: "disclaimer", text: "8. Wyłączenia odpowiedzialności" },
         { id: "limitation", text: "9. Ograniczenie odpowiedzialności" },
-        { id: "contact", text: "10. Informacje kontaktowe" }
+        { id: "governing-law", text: "10. Prawo właściwe i spory" },
+        { id: "changes", text: "11. Zmiany Warunków" }
       ]
     },
     sections: {

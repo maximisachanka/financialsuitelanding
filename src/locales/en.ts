@@ -297,7 +297,8 @@ export const en = {
         { id: "termination", text: "7. Termination" },
         { id: "disclaimer", text: "8. Disclaimers" },
         { id: "limitation", text: "9. Limitation of Liability" },
-        { id: "contact", text: "10. Contact Information" }
+        { id: "governing-law", text: "10. Governing Law and Disputes" },
+        { id: "changes", text: "11. Changes to Terms" }
       ]
     },
     sections: {

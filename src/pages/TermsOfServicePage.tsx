@@ -163,7 +163,7 @@ export default function TermsOfServicePage() {
           <div className="legal-divider"></div>
 
           {/* Governing Law */}
-          <div className="legal-section" data-aos="fade-up">
+          <div id="governing-law" className="legal-section" data-aos="fade-up">
             <h2 className="legal-section-title">{t.termsPage.sections.governingLaw.title}</h2>
             {t.termsPage.sections.governingLaw.content.map((paragraph, index) => (
               <p key={index} className="legal-text">{paragraph}</p>
@@ -173,7 +173,7 @@ export default function TermsOfServicePage() {
           <div className="legal-divider"></div>
 
           {/* Changes to Terms */}
-          <div className="legal-section" data-aos="fade-up">
+          <div id="changes" className="legal-section" data-aos="fade-up">
             <h2 className="legal-section-title">{t.termsPage.sections.changes.title}</h2>
             {t.termsPage.sections.changes.content.map((paragraph, index) => (
               <p key={index} className="legal-text">{paragraph}</p>

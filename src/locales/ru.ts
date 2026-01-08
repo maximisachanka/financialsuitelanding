@@ -297,7 +297,8 @@ export const ru = {
         { id: "termination", text: "7. Прекращение" },
         { id: "disclaimer", text: "8. Отказ от ответственности" },
         { id: "limitation", text: "9. Ограничение ответственности" },
-        { id: "contact", text: "10. Контактная информация" }
+        { id: "governing-law", text: "10. Применимое право и споры" },
+        { id: "changes", text: "11. Изменения Условий" }
       ]
     },
     sections: {
